@@ -1,0 +1,938 @@
+= アストルフォ ホテル管理システム
+九条涼果 <s1131234@gmail.com>
+:Author:    九条涼果
+:Email:     s1131234@gmail.com
+:Date:      AlternativeWayToSetOptional date
+:Revision:  0.0.1
+
+阿福旅馆，生产环境运行在 `http://0.0.0.0:8899` 下，本地运行在 `http://localhost:10080` 下
+
+https://jsonschema.net/[JSON to JSON Schema生成工具]
+
+http://brutusin.org/json-forms/[JSON Schema to HTML form生成工具]
+
+== 注册
+
+.普通用户
+
+昵称域是可选的。如果密码不是SHA256加密后的(256位长度)会在后台加密保存
+用这个接口注册的就是普通用户
+
+TIP: 请求格式不正确就是400, 创建成功返回201。
+返回内容是用户信息
+
+[source,http]
+----
+POST http://localhost:10080/api/users/make
+Content-Type: application/json // <1>
+
+{
+  "phoneNumber": "18800000001", // <2>
+  "password": "2333",
+  "nickname": "昵称" // <3>
+}
+----
+<1> 传送的内容类型
+<2> phoneNumber, 不是phone_number
+<3> 昵称是可选的,默认为空
+
+返回结果示例如下
+[source,json]
+{
+  "id": 32,
+  "phoneNumber": "18800000001",
+  "nickname": "昵称",
+  "password": "124640bf2792a0cdce2c04e13326d67bf013bac6ce546616b04888e7c4e68631",
+  "register_date": "2017-12-24T00:52:05.836",
+  "role": "注册用户",
+  "guests": []
+}
+
+.前台、经理
+从 `/users/make/admin` 注册的就是经理
+
+从 `/users/make/employee` 注册的就是前台
+
+[source,http]
+----
+POST http://localhost:10080/api/users/make/employee
+Content-Type: application/json
+
+{
+  "phoneNumber": "18811111111",
+  "password": "2333",
+  "nickname": "我是前台",
+}
+----
+
+返回示例
+[source, json]
+{
+  "id": 37,
+  "phoneNumber": "18811111111",
+  "nickname": "我是前台",
+  "password": "124640bf2792a0cdce2c04e13326d67bf013bac6ce546616b04888e7c4e68631",
+  "register_date": "2017-12-24T01:13:14.647",
+  "role": "前台",
+  "guests": []
+}
+
+=== 登录
+需要提供手机号和密码
+正确的话 200 并返回用户信息
+错误的话 400
+
+CAUTION: 在这之后有权限的操作都需要加上HTTP Basic认证
+[source,http]
+----
+POST http://localhost:10080/api/users/login
+Content-Type: application/json
+
+{
+  "phoneNumber": "18800000001",
+  "password": "2333"
+}
+----
+
+返回示例, 和注册返回的结果一致
+[source,json]
+{
+  "id": 32,
+  "phoneNumber": "18800000001",
+  "nickname": "昵称",
+  "password": "124640bf2792a0cdce2c04e13326d67bf013bac6ce546616b04888e7c4e68631",
+  "register_date": "2017-12-24T00:42:17",
+  "role": "注册用户",
+  "guests": []
+}
+
+=== 登出
+不提供登出功能
+不妨尝试一下 `POST /api/users/logout`
+
+
+== 用户信息
+
+.列出用户信息
+[source,http]
+GET http://localhost:10080/api/users/
+
+返回
+[source, json]
+[
+  {
+    "id": 1,
+    "phoneNumber": "18888888888",
+    "nickname": "老子最大",
+    "password": "124640bf2792a0cdce2c04e13326d67bf013bac6ce546616b04888e7c4e68631",
+    "register_date": "2017-12-30T14:20:07",
+    "role": "经理",
+    "guests": []
+  },
+  {
+    "id": 2,
+    "phoneNumber": "17788888888",
+    "nickname": "前台小姐姐",
+    "password": "124640bf2792a0cdce2c04e13326d67bf013bac6ce546616b04888e7c4e68631",
+    "register_date": "2017-12-30T14:20:43",
+    "role": "前台",
+    "guests": []
+  },
+  {
+    "id": 3,
+    "phoneNumber": "18800000001",
+    "nickname": "一娃",
+    "password": "124640bf2792a0cdce2c04e13326d67bf013bac6ce546616b04888e7c4e68631",
+    "register_date": "2017-12-30T14:21:22",
+    "role": "注册用户",
+    "guests": [
+      {
+        "id": 12,
+        "identification": "111111200001013333",
+        "name": "宋娘"
+      },
+      {
+        "id": 13,
+        "identification": "111111200001013334",
+        "name": "宋二娘"
+      }
+    ]
+  },
+  {
+    "id": 4,
+    "phoneNumber": "18800000002",
+    "nickname": "二娃",
+    "password": "124640bf2792a0cdce2c04e13326d67bf013bac6ce546616b04888e7c4e68631",
+    "register_date": "2017-12-30T14:21:32",
+    "role": "注册用户",
+    "guests": [
+      {
+        "id": 14,
+        "identification": "111111200001013335",
+        "name": "宋三娘"
+      }
+    ]
+  },
+  {
+    "id": 5,
+    "phoneNumber": "18800000003",
+    "nickname": "三娃",
+    "password": "124640bf2792a0cdce2c04e13326d67bf013bac6ce546616b04888e7c4e68631",
+    "register_date": "2017-12-30T14:21:38",
+    "role": "注册用户",
+    "guests": [
+      {
+        "id": 12,
+        "identification": "111111200001013333",
+        "name": "宋娘"
+      }
+    ]
+  }
+]
+
+
+
+
+
+
+.获取用户信息
+使用phone参数，获得的是和登录返回的信息相同，可用于更新信息之后重新获取
+[source, http]
+GET http://localhost:10080/api/users/get?phone=18800000001
+
+返回
+[source, json]
+{
+  "_embedded" : {
+    "users" : [ {
+      "phoneNumber" : "18834321240",
+      "nickname" : "temp",
+      "password" : "ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad",
+      "register_date" : "2017-12-26T19:33:03",
+      "role" : "经理"
+    } ]
+  },
+  "_links" : {
+    "self" : {
+      "href" : "http://localhost:10080/api/users?page=0&size=20"
+    }
+  },
+  "page" : {
+    "size" : 20,
+    "totalElements" : 1,
+    "totalPages" : 1,
+    "number" : 0
+  }
+}
+
+
+
+.更新用户信息
+支持昵称和密码修改,密码的验证由HTTP头部完成
+修改密码，修改昵称什么的。因为有Authorization Header，不需要提供原始密码
+
+不过如果头部密码不正确 返回422
+
+[source,http]
+----
+PATCH http://localhost:10080/api/users?phone=18800000001 // <1>
+Content-Type: application/json
+
+{
+  "password": "new_pass", // <2>
+  "nickname": "new_nick" // <3>
+}
+----
+<1> PATCH Method
+<2> 新的密码
+<3> 新的昵称, 这两个都可以有 也可以只有其一
+
+
+.删除用户账号
+[source, http]
+DELETE http://localhost:10080/api/users?phone=18800000001
+
+.获取用户的订单
+
+使用手机号参数
+[source, http]
+GET http://localhost:10080/api/users/transactions?phone=18800000001
+
+=== 列出所有用户
+当然要有验证,以后的示例中省略
+[source, http]
+GET http://localhost:10080/api/users
+Authorization:Basic dGVzdDoyMzMz
+
+=== 绑定的身份证
+.查询
+如果有的话,其实在登录信息返回的时候就会包含，没有的话是个空，除非用户不存在(会返回404)，成功获取都是200
+
+[source, http]
+GET http://localhost:10080/api/users/guests?phone=18800000001
+
+返回如下
+[source,json]
+[
+  {
+    "id": 34,
+    "identification": "130622199901017537",
+    "name": "宋娘"
+  },
+  {
+    "id": 35,
+    "identification": "130622199901017538",
+    "name": "宋二娘"
+  },
+  {
+    "id": 36,
+    "identification": "130622199901017338",
+    "name": "宋三娘"
+  }
+]
+
+.添加身份证
+身份证从这生成 http://www.welefen.com/lab/identify/
+
+姓名从这里生成 https://uinames.com/
+
+[source, http]
+----
+POST http://localhost:10080/api/users/guests?phone=18800000001
+Content-Type: application/json
+
+{
+  "identification": "130622199901017537",
+  "name": "宋娘"
+}
+----
+
+运行结果是这样,空结果201
+[source, http]
+----
+POST http://localhost:10080/api/users/guests?phone=18800000001
+
+HTTP/1.1 201
+X-Application-Context: Hotel Astolfo:10080
+Content-Length: 0
+Date: Sat, 23 Dec 2017 16:57:18 GMT
+
+<Response body is empty>
+
+Response code: 200; Time: 95ms; Content length: 0 bytes
+----
+
+.修改
+[source, http]
+----
+PATCH http://localhost:10080/api/users/guests?identification=130622199901017537
+Content-Type: application/json
+
+{
+  "name":"宋娘再生"
+}
+----
+
+.删除
+[source, http]
+DELETE http://localhost:10080/api/users/guests?identification=130622199901017537
+
+== 房间管理
+
+=== 获取初始化信息
+
+.一行代码 获取显示首页需要的内容
+[source, http]
+----
+GET http://localhost:10080/api/rooms/load2
+Content-Type: application/json
+----
+返回三块
+第一块types 类型
+第二块directions 朝向
+第三块rooms 所有房间
+[source, json]
+----
+{
+  "types": [
+    {
+      "id": 3,
+      "type": "东",
+      "description": "冬暖夏狼"
+    },
+    {
+      "id": 4,
+      "type": "东2",
+      "description": "冬暖夏狼"
+    },
+    {
+      "id": 5,
+      "type": "大床房",
+      "description": "冬暖夏狼"
+    }
+  ],
+  "directions": [
+    {
+      "id": 1,
+      "type": "东2",
+      "description": "冬暖夏狼"
+    },
+    {
+      "id": 2,
+      "type": "东",
+      "description": "冬暖夏狼"
+    }
+  ],
+  "rooms": [
+    {
+      "id": 6,
+      "roomNumber": {
+        "floor": 5,
+        "number": 1
+      },
+      "type": {
+        "id": 5,
+        "type": "大床房",
+        "description": "冬暖夏狼"
+      },
+      "direction": {
+        "id": 2,
+        "type": "东",
+        "description": "冬暖夏狼"
+      },
+      "specialty": "一个介绍",
+      "price": 143,
+      "broken": false
+    },
+    {
+      "id": 7,
+      "roomNumber": {
+        "floor": 2,
+        "number": 1
+      },
+      "type": {
+        "id": 5,
+        "type": "大床房",
+        "description": "冬暖夏狼"
+      },
+      "direction": {
+        "id": 2,
+        "type": "东",
+        "description": "冬暖夏狼"
+      },
+      "specialty": "一个介绍",
+      "price": 143,
+      "broken": false
+    }
+  ]
+}
+----
+
+.简要版本
+[source, http]
+----
+GET http://localhost:10080/api/rooms/load
+Content-Type: application/json
+----
+[source, json]
+----
+{
+  "types": ["东", "东2", "大床房"],
+  "directions": ["东2", "东"],
+  "rooms": {
+    "2": [1],
+    "3": [1],
+    "5": [1]
+  }
+}
+----
+
+=== 房间类型
+.获取房间类型定义
+只需要GET
+[source, http]
+GET http://localhost:10080/api/rooms/types
+
+返回结果
+[source, json]
+[
+  {
+    "id": 1,
+    "type": "大床房",
+    "description": "足够两个人唑在一起的大小"
+  },
+  {
+    "id": 2,
+    "type": "大床房2",
+    "description": "足够两个人唑在一起的大小"
+  }
+]
+
+.添加房间类型定义。
+限制为只有经理经理才能操作
+[source, http]
+----
+POST http://localhost:10080/api/rooms/types
+Content-Type: application/json
+
+{
+  "type": "大床房",
+  "description": "足够两个人唑在一起的大小"
+}
+----
+如果成功就是201，并返回新建的项目。
+如果失败就是409，并返回已有的项目。
+
+.更新类型定义
+[source, http]
+----
+PATCH http://localhost:10080/api/rooms/types?type=大床房
+Content-Type: application/json
+
+{
+  "description": "修改之后的内容"
+}
+----
+给什么改什么
+
+.删除类型
+[source, http]
+DELETE http://localhost:10080/api/rooms/types?type=大床房
+
+=== 房间朝向
+
+.获取房间朝向定义只需要GET
+[source, http]
+GET http://localhost:10080/api/rooms/directions
+
+返回结果
+[source, json]
+[
+  {
+    "id": 3,
+    "type": "东",
+    "description": "冬暖夏狼"
+  },
+  {
+    "id": 4,
+    "type": "东2",
+    "description": "冬暖夏狼"
+  }
+]
+
+.添加房间朝向定义
+[source, http]
+----
+POST http://localhost:10080/api/rooms/directions
+Content-Type: application/json
+
+{
+  "type": "东",
+  "description": "冬暖夏狼"
+}
+----
+TIP: 成功就是201，并返回新建的项目。
+如果失败就是409，并返回已有的项目。
+
+.更新朝向定义
+[source, http]
+----
+PATCH http://localhost:10080/api/rooms/directions?direction=东
+Content-Type: application/json
+
+{
+  "description": "修改之后的内容"
+}
+----
+给什么改什么
+
+.删除类型
+[source, http]
+DELETE http://localhost:10080/api/rooms/directions?direction=东
+
+
+=== 房间
+.列出所有房间和查询房间
+[source,http]
+GET http://localhost:10080/api/rooms/
+
+结果大概这样
+[source, json]
+[
+  {
+    "id": 8,
+    "roomNumber": {
+      "floor": 1,
+      "number": 1
+    },
+    "type": {
+      "id": 6,
+      "type": "大床房",
+      "description": "冬暖夏狼"
+    },
+    "direction": {
+      "id": 7,
+      "type": "东方",
+      "description": "车万"
+    },
+    "specialty": "小房间",
+    "price": 143,
+    "broken": false,
+    "comments": [
+      {
+        "id": 1,
+        "body": "abc",
+        "userId": 3,
+        "createdDate": "2017-12-30T15:21:18"
+      }
+    ],
+    "createdDate": "2017-12-30T14:32:27.287",
+    "occupied": false
+  },
+  {
+    "id": 9,
+    "roomNumber": {
+      "floor": 1,
+      "number": 2
+    },
+    "type": {
+      "id": 6,
+      "type": "大床房",
+      "description": "冬暖夏狼"
+    },
+    "direction": {
+      "id": 7,
+      "type": "东方",
+      "description": "车万"
+    },
+    "specialty": "小房间",
+    "price": 133,
+    "broken": false,
+    "comments": [],
+    "createdDate": "2017-12-30T14:32:41.222",
+    "occupied": false
+  }
+]
+
+提供的关键词有
+
+from 何时入住
+
+to 何时离店 这两个必须同时存在
+
+type 房间类型
+
+direction 房间朝向
+
+priceFrom 价格起点，包含
+
+priceTo [priceFrom, priceTo]区间
+
+floor 房间楼层
+
+number 楼层内的第几个房间
+
+都是可选的，不传就是列出全部。
+
+. 列出大床房类型
+默认查询的是可用房，如果需要列出全部请加上参数 `all=true`
+[source, http]
+GET http://localhost:10080/api/rooms/list?type=大床房
+
+. 房价大于等于100元的全部
+[source, http]
+GET http://localhost:10080/api/rooms/list?priceFrom=100
+
+. [99, 100]元范围
+[source, http]
+GET http://localhost:10080/api/rooms/list?priceFrom=99&priceTo=100
+
+. 查询2018-04-22入住 2018-04-23离开的话 可用的房间列表
+[source, http]
+GET http://localhost:10080/api/rooms/list?from=2018-04-22T18:25:43.511&to=2018-04-23T18:25:43.511
+
+.添加房间定义
+[source, http]
+----
+POST http://localhost:10080/api/rooms
+Content-Type: application/json
+
+{
+  "type": "大床房",
+  "direction": "东方",
+  "specialty": "小房间",
+  "price": "123",
+  "roomNumber": {
+    "floor": 1,
+    "number": 4
+  },
+  "broken":true
+}
+----
+
+.更新房间定义
+
+和更新用户个人信息一样，只提供有的部分
+[source, http]
+----
+PATCH http://localhost:10080/api/rooms?floor=1&number=1
+Content-Type: application/json
+
+{
+  "type": "大床房",
+  "direction": "东",
+  "specialty": "一个介绍",
+  "price": "143"
+}
+----
+成功返回200,并带上新项目
+不存在就是404
+
+.删除房间
+[source, http]
+DELETE http://localhost:10080/api/rooms?floor=1&number=1
+
+=== 获取楼层信息列表
+[source, http]
+GET http://localhost:10080/api/rooms/floors
+
+[source, json]
+[
+  {
+    "floor": 3,
+    "number": 1
+  },
+  {
+    "floor": 4,
+    "number": 1
+  },
+  {
+    "floor": 5,
+    "number": 1
+  }
+]
+其实还不如直接用上面的list 获取所有房间列表
+
+== 订单管理
+
+.列出订单
+[source, http]
+GET http://localhost:10080/api/transactions/list
+
+返回
+[source, json]
+[
+  {
+    "id": 17,
+    "createdDate": "2017-12-30T14:42:11",
+    "user": {
+      "id": 3,
+      "phoneNumber": "18800000001",
+      "nickname": "一娃",
+      "password": "124640bf2792a0cdce2c04e13326d67bf013bac6ce546616b04888e7c4e68631",
+      "register_date": "2017-12-30T14:21:22",
+      "role": "注册用户",
+      "guests": [
+        {
+          "id": 12,
+          "identification": "111111200001013333",
+          "name": "宋娘"
+        },
+        {
+          "id": 13,
+          "identification": "111111200001013334",
+          "name": "宋二娘"
+        },
+        {
+          "id": 14,
+          "identification": "111111200001013335",
+          "name": "宋三娘"
+        }
+      ]
+    },
+    "room": {
+      "id": 8,
+      "roomNumber": {
+        "floor": 1,
+        "number": 1
+      },
+      "type": {
+        "id": 6,
+        "type": "大床房",
+        "description": "冬暖夏狼"
+      },
+      "direction": {
+        "id": 7,
+        "type": "东方",
+        "description": "车万"
+      },
+      "specialty": "小房间",
+      "price": 143,
+      "broken": false,
+      "comments": [],
+      "createdDate": "2017-12-30T14:32:27.287",
+      "occupied": false
+    },
+    "guests": [
+      {
+        "id": 12,
+        "identification": "111111200001013333",
+        "name": "宋娘"
+      },
+      {
+        "id": 13,
+        "identification": "111111200001013334",
+        "name": "宋二娘"
+      }
+    ],
+    "dateFrom": "2017-12-30T14:42:11",
+    "dateTo": "2017-12-30T14:42:11",
+    "activated": true,
+    "used": false,
+    "comment": null
+  }
+]
+
+提供的关键词有
+
+phone 属于谁的订单
+
+createFrom 订单的创建范围左区间
+
+createTo 订单的创建范围右区间
+
+validFrom 订单有效期左区间，就是预定开始日期
+
+validTo 订单有效期右区间，预定离店时间
+
+type 房间类型
+
+direction 房间朝向
+
+priceFrom 价格起点，包含
+
+priceTo [priceFrom, priceTo]区间
+
+floor 房间楼层
+
+number 楼层内的第几个房间
+
+.新增订单
+用户预订
+[source, http]
+----
+POST http://localhost:10080/api/transactions
+Content-Type: application/json
+
+{
+  "dataFrom": "2017-12-22T16:57:10",
+  "dataTo": "2017-12-23T16:57:10",
+  "phone": "18800000001",
+  "guests": [
+    "111111200001013333", "111111200001013334"
+  ],
+  "room": {
+    "floor": 1,
+    "number": 1
+  }
+}
+----
+如果房间已损坏，423
+如果时间冲突，409
+
+.修改订单
+
+[source, http]
+----
+PATCH http://localhost:10080/api/transactions?bookId=34
+Content-Type: application/json
+
+{
+  "dateFrom": "2017-12-22T16:57:10",
+  "dateTo": "2017-12-23T16:57:10",
+  "guests": [
+    "130622199901017537"
+  ],
+  "room": {
+    "floor": 1,
+    "number": 1
+  }
+  "activated": true,
+  "used": true
+}
+----
+
+.结账
+[source, http]
+POST http://localhost:10080/api/transactions/checkout?bookId=34
+
+返回价格
+
+
+== 评论管理
+
+.由ID获取评论
+[source, http]
+GET http://localhost:10080/api/comments/?commentId=1
+
+返回
+
+[source, json]
+{
+  "id": 1,
+  "body": "abc",
+  "user": {
+    "id": 3,
+    "nickname": "一娃",
+    "role": "注册用户"
+  },
+  "createdDate": "2017-12-30T15:21:18"
+}
+
+
+.列出评论
+列出房间号上的评论列表，多条
+[source,http]
+GET http://localhost:10080/api/comments/room?roomId=8
+
+返回
+[source, json]
+[
+  {
+    "id": 1,
+    "body": "abc",
+    "user": {
+      "id": 3,
+      "nickname": "一娃",
+      "role": "注册用户"
+    },
+    "createdDate": "2017-12-30T15:21:18"
+  }
+]
+
+列出订单号上的评论，0或者1
+[source, http]
+GET http://localhost:10080/api/comments/transaction?transactionId=1
+
+返回
+[source, json]
+{
+  "id": 1,
+  "body": "abc",
+  "userId": 3,
+  "createdDate": "2017-12-30T15:21:18"
+}
+
+
+.创建评论
+以订单为基础创建评论，绑定到订单的用户身上
+[source, http]
+----
+POST http://localhost:10080/api/comments/?transactionId=17
+Content-Type: application/json
+
+{
+  "body":"翻滚"
+}
+----
+

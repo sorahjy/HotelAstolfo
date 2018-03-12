@@ -1,0 +1,421 @@
+.left-nav {
+    position: absolute;
+    height: inherit;
+    width: 15em;
+    box-shadow: .1em 0 0 0 rgba(0, 0, 0, 0.5);
+    z-index: 10;
+}
+
+.left-nav dt {
+    text-align: center;
+}
+
+.left-nav dd {
+    cursor: pointer;
+    text-align: center;
+    line-height: 3em;
+    background-color: #dfdfdf;
+    margin: 2px;
+}
+
+.container {
+    position: absolute;
+    left: 15em;
+    width: calc(100% - 15em);
+    height: inherit;
+    background: linear-gradient(to bottom, white 10%, #eff8ff);
+    overflow-y: auto;
+    overflow-x: auto;
+}
+
+.container .welcome {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    background: url(https://i.loli.net/2018/01/04/5a4db98408273.jpg) no-repeat center center;
+    background-size: contain;
+}
+
+/* check_my_order and check_my_booking*/
+.container table {
+    position: absolute;
+    left: 5%;
+    width: 1200px;
+    text-align: center;
+    border: 1px solid darkgrey;
+}
+
+.container table input {
+    width: 80%;
+}
+
+.container table select {
+    width: 80%;
+    text-align: center;
+}
+
+.container table span {
+    text-align: left;
+    display: inline-block;
+    width: 100%;
+}
+
+.container table tr {
+    height: 4em;
+    border-bottom: 1px solid grey;
+}
+
+.container table tr:first-child {
+    height: 2em;
+}
+
+.container table td {
+    max-width: 4em;
+    overflow: hidden auto;
+}
+
+.container table td:last-child {
+    text-align: center;
+    width: 6em;
+}
+
+.container table td .comm-btn {
+    display: inline-block;
+    margin: 0;
+    text-align: center;
+    cursor: pointer;
+    width: 4em;
+}
+
+.container #check_my_order table tr td:nth-child(1) {
+    width: 6em;
+}
+
+.container #check_my_order table tr td:nth-last-child(2) {
+    width: 6em;
+}
+
+.container #check_my_order table tr td:nth-last-child(1) {
+    width: 8em;
+}
+
+.container #check_my_order .commentList {
+    position: absolute;
+    top: 15%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 40%;
+    height: 70%;
+    background-color: white;
+    border-radius: 1em;
+    box-shadow: 1.2em 1.2em 5em .5em rgba(41, 41, 41, 0.3);
+    display: none;
+}
+
+.container #check_my_order .commentList .content {
+    width: 100%;
+    height: 80%;
+}
+
+.container #check_my_order .commentList .noCom {
+    width: 100%;
+    height: 80%;
+    padding-top: 50%;
+    font-size: 2em;
+    text-align: center;
+}
+
+.container #check_my_order .commentList .addCom {
+    position: absolute;
+    display: inline-block;
+    width: 100%;
+    height: 20%;
+    bottom: 0
+}
+
+.container #check_my_order .commentList .addCom input {
+    height: 2.5em;
+    width: calc(100% - 90px);
+    float: left;
+}
+
+.container #check_my_order .commentList .addCom .btn {
+    float: right;
+}
+
+.container #check_my_order .commentList .addCom dl {
+    margin: 2em 1em 0 1em;
+    width: calc(100% - 2em);
+    padding: 1em .5em .5em .5em;
+}
+
+.container #check_my_order .commentList .content dl {
+    margin: 2em 1em 0 1em;
+    width: calc(100% - 2em);
+    box-shadow: 0 0 5px 1px rgba(0, 0, 0, .75);
+    padding: 1em .5em .5em .5em;
+}
+
+.container #check_my_order .commentList .date {
+    text-align: right;
+}
+
+.container #modify_my_info dt {
+    font-weight: bold;
+    padding-bottom: .5em;
+}
+
+.container #modify_my_info dd label {
+    font-size: 12px;
+    width: 100%;
+}
+
+.container #modify_my_info .btn {
+    margin: auto;
+}
+
+.container #modify_my_info .info {
+    position: relative;
+    border: 0;
+    width: 35em;
+}
+
+.container #modify_my_info .info tr {
+    text-align: right;
+    height: 2.5em;
+    border: 0;
+}
+
+.container #modify_my_info .info tr td {
+    width: 20%;
+}
+
+.container #book_a_room .resList {
+    margin: 2em;
+}
+
+.container #rooms_all_info dt {
+    top: 5%;
+    position: fixed;
+}
+
+.container #rooms_all_info .bookWindow dt {
+    position: relative;
+}
+
+.container #rooms_all_info dt select {
+    height: 2em;
+    font-weight: normal;
+    margin-bottom: 1em;
+}
+
+.container #rooms_all_info dt label {
+    margin: 0 2em .5em 0;
+}
+
+.container #rooms_all_info dd table tr td:nth-child(1) {
+    width: 6em;
+}
+
+.container #rooms_all_info dd table tr td:nth-child(2) {
+    width: 4em;
+}
+
+.container #rooms_all_info dd table tr td:nth-child(3) {
+    width: 10em;
+}
+
+.container #rooms_all_info dd table tr td:nth-child(5) {
+    width: 6em;
+}
+
+.container #rooms_all_info dd table tr td:nth-child(6) {
+    width: 6em;
+}
+
+.container #rooms_all_info dd table tr td:nth-child(7) {
+    width: 6em;
+}
+
+.container #rooms_all_info dd table tr td:nth-child(8) {
+    width: 6em;
+}
+
+.container #rooms_all_info .bookWindow {
+    position: fixed;
+    z-index: 49;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    display: none;
+}
+
+.container #rooms_all_info .bookWindow .close {
+    position: absolute;
+    top: 5px;
+    right: 10px;
+}
+
+.container #rooms_all_info .bookWindow .content {
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    width: 15em;
+    padding: 2em 2em 2em 2em;
+    transform: translateX(-50%);
+    background-color: rgba(255, 255, 255, .95);
+    border-radius: 1em;
+    box-shadow: 1.2em 1.2em 5em .5em rgba(41, 41, 41, 0.3);
+}
+
+.container #rooms_all_info .bookWindow .content div {
+    width: 100%;
+    margin-bottom: 1em;
+    text-align: center;
+}
+
+.container #rooms_all_info .bookWindow .bookList {
+    position: absolute;
+    top: 15%;
+    left: 50%;
+    width: 30vw;
+    height: 70vh;
+    padding: 2em 2em 2em 2em;
+    transform: translateX(-50%);
+    background-color: white;
+    border-radius: 1em;
+    box-shadow: 1.2em 1.2em 5em .5em rgba(41, 41, 41, 0.3);
+    overflow-x: hidden;
+    overflow-y: auto;
+    display: none;
+}
+
+.container #modify_rooms_type div table {
+    position: relative;
+    margin-bottom: 3em;
+}
+
+.container #modify_rooms_type table tr td:nth-child(1) {
+    width: 20em;
+}
+
+.container #modify_rooms_type table tr td:nth-last-child(2) {
+    width: 5em;
+}
+
+.container #modify_rooms_type table tr td:nth-last-child(1) {
+    width: 5em;
+}
+
+.container #modify_rooms_type .room table tr td:nth-child(1) {
+    width: 6em;
+}
+
+.container #modify_rooms_type .room table tr td:nth-child(2) {
+    width: 6em;
+}
+
+.container #check_all_booking table tr td:nth-last-child(2) {
+    border-left: 1px solid rgba(100, 100, 100, .8);
+}
+
+.container #check_all_booking dt {
+    top: 5%;
+    position: fixed;
+}
+
+.container #check_all_booking dt label {
+    display: inline-block;
+    vertical-align: center;
+    margin: 0 2em 1em 0;
+}
+
+.container #check_all_booking dt select {
+    height: 2em;
+}
+
+.container #check_all_booking dd table tr td:nth-child(1) {
+    width: 6em;
+}
+
+.container #check_all_booking dd table tr td:nth-child(2) {
+    width: 15em;
+}
+
+.container #check_all_booking dd table tr td:nth-child(3) {
+    width: 15em;
+}
+
+.container #check_all_booking .checkOutList {
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 20%;
+    height: 40%;
+    background-color: white;
+    border-radius: 1em;
+    box-shadow: 1.2em 1.2em 5em .5em rgba(41, 41, 41, 0.3);
+    text-align: center;
+    font-size: 2em;
+    display: none;
+}
+
+.container #check_all_booking .checkOutList p {
+    padding-top: 30%;
+    overflow: hidden;
+}
+
+.container #check_all_booking .checkOutList p span {
+    font-size: 2.5em;
+    font-weight: bold;
+}
+
+.container #modify_user_info dd table tr td:nth-child(1) {
+    width: 10em;
+}
+
+.container #modify_user_info dd table tr td:nth-last-child(3) {
+    width: 15em;
+    overflow: auto;
+}
+
+.container #modify_user_info dd table tr td:nth-last-child(2) {
+    width: 4em;
+}
+
+.container #modify_user_info dd table tr td:nth-last-child(1) {
+    width: 4em;
+}
+
+.container #modify_user_info .addAccount table {
+    position: relative;
+    width: 20em;
+    border: 0;
+}
+
+.container #modify_user_info .addAccount table tr {
+    border: 0;
+    height: 2em;
+}
+
+.container #modify_user_info .addAccount table input {
+    width: 100%;
+}
+
+.container #modify_user_info .addAccount table select {
+    width: 100%;
+}
+
+.container #modify_user_info .addAccount table tr td:nth-child(1) {
+    width: 4em;
+    text-align: right;
+}
+
+.container #modify_user_info .addAccount table tr td:last-child {
+    text-align: center;
+}

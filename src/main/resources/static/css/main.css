@@ -1,0 +1,493 @@
+:root {
+    --global-theme: #a2d6f5;
+}
+
+html {
+}
+
+body {
+    position: relative;
+    height: 100%;
+}
+
+[v-cloak] {
+    display: none;
+}
+
+.msg {
+    position: fixed;
+    top: 30%;
+    left: 50%;
+    text-align: center;
+    transform: translateX(-50%);
+    color: #ffffff;
+    background-color: rgba(0, 0, 0, .8);
+    font-size: 2em;
+    padding: 1em 2em;
+    border-radius: 1em;
+    display: none;
+}
+
+.cat-loading {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 98;
+    text-align: center;
+    color: #ffffff;
+    background: url(https://i.loli.net/2018/01/02/5a4b18c24345e.gif) center center no-repeat;
+    display: none;
+}
+
+.top_banner {
+    background: linear-gradient(to bottom, var(--global-theme), white);
+    width: 100%;
+    margin: 0;
+    height: 8vh;
+}
+
+.top_banner .login-btn {
+    position: absolute;
+    z-index: 11;
+    right: 5%;
+    cursor: pointer;
+    font-size: 1.8em;
+    line-height: 7vh;
+    padding: 0 2vw 0 2vw;
+    opacity: .85;
+    color: #ffffff;
+    font-weight: bold;
+    border-radius: 0 0 1em 1em;
+    display: none;
+}
+
+.top_banner .user-info {
+    position: absolute;
+    right: 10%;
+    font-size: 1.5em;
+    color: #0f0f0f;
+    line-height: 7vh;
+    padding: 0 2vw 0 2vw;
+    font-weight: bolder;
+    /*display: inline-block;*/
+    display: none;
+}
+
+.top_banner .user-info .user-btn {
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.top_banner .user-info .logout-btn {
+    display: inline-block;
+    cursor: pointer;
+    color: #363638;
+    margin-left: 2em;
+    font-size: 0.5em;
+    vertical-align: center;
+}
+
+.loading {
+    display: inline-block;
+    overflow: hidden;
+    height: 1.3em;
+    margin-top: -0.3em;
+    line-height: 1.5em;
+    vertical-align: text-bottom;
+}
+
+.loading::after {
+    display: inline-table;
+    white-space: pre;
+    text-align: left;
+}
+
+.loading::after {
+    content: " \A.\A..\A...";
+    animation: spin4 2s steps(4) infinite;
+}
+
+.loading.line::after {
+    content: " /\A–\A\\\A|";
+    text-align: center;
+    animation: spin4 1s steps(4) infinite;
+}
+
+@keyframes spin4 {
+    to {
+        transform: translateY(-6.0em);
+    }
+}
+
+.login, .signup {
+    position: fixed;
+    z-index: 10;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    display: none;
+}
+
+.window {
+    position: absolute;
+    margin: auto;
+    width: 100%;
+    top: 30%;
+    color: #ffffff;
+    padding: 2em 0 1em 0;
+    background-color: rgba(23, 45, 62, 0.8);
+    box-shadow: 0 0 5em .8em #ffffff;
+}
+.close{
+    position: absolute;
+    top: 5px;
+    right: 10px;
+}
+
+.window .close {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    zoom: 2;
+    color: white;
+}
+
+.window .confirm {
+    cursor: pointer;
+}
+
+.login .window a {
+    color: #ffffff;
+    margin: 0 2em 0 2em;
+}
+
+.login .window .checkbox {
+    padding-bottom: .5em;
+}
+
+.login .window .checkbox em {
+    font-size: 12px;
+    color: darkgray;
+}
+
+.login .window .tips {
+    cursor: auto;
+}
+
+.main {
+    z-index: 0;
+    display: block;
+    height: 85vh;
+    box-shadow: #0f0f0f;
+    transition: filter 400ms linear;
+}
+
+.main .slider_container {
+    position: relative;
+    width: 100%;
+    background-color: #f5f5f5;
+    box-shadow: #666 0 0 5px;
+}
+
+.main .slider_container div {
+    position: absolute;
+    width: 100vw;
+    height: 85vh;
+    opacity: 0;
+    filter: alpha(opacity=0);
+    -webkit-animation: round 25s linear infinite;
+    animation: round 25s linear infinite 0s;
+}
+
+.slider_container div:nth-child(5) {
+    /*background: url(../images/image5.jpg) center center;*/
+    background: url(https://i.loli.net/2018/01/02/5a4b18c246233.jpg) center center;
+    background-size: cover;
+    animation-delay: 0s;
+}
+
+.slider_container div:nth-child(4) {
+    /*background: url(../images/image4.jpg) center center;*/
+    background: url(https://i.loli.net/2018/01/02/5a4b18c245fbd.jpg) center center;
+    background-size: cover;
+    animation-delay: 5s;
+}
+
+.slider_container div:nth-child(3) {
+    /*background: url(../images/image3.jpg) center center;*/
+    background: url(https://i.loli.net/2018/01/02/5a4b18c240ace.jpg) center center;
+    background-size: cover;
+    animation-delay: 10s;
+}
+
+.slider_container div:nth-child(2) {
+    /*background: url(../images/image2.jpg) center center;*/
+    background: url(https://i.loli.net/2018/01/02/5a4b18c23bced.jpg) center center;
+    background-size: cover;
+    animation-delay: 15s;
+}
+
+.slider_container div:nth-child(1) {
+    /*background: url(../images/image1.jpg) center center;*/
+    background: url(https://i.loli.net/2018/01/02/5a4b18c238ec4.jpg) center center;
+    background-size: cover;
+    animation-delay: 20s;
+}
+
+.slider_container:hover div {
+    /*animation-play-state: paused;*/
+}
+
+.main .slider_container {
+    transition: filter 0.5s linear;
+}
+
+.main .slider_container span {
+    position: absolute;
+    width: 100%;
+    top: 90%;
+    color: #000;
+    font-size: 30px;
+    text-align: center;
+    line-height: 100px;
+    transform: scaleY(0);
+    transition: all 0.5s ease-in-out;
+}
+
+.main .slider_container:hover span {
+    transform: scaleY(1);
+}
+
+@keyframes round {
+    0% {
+        left: 0;
+        z-index: 1;
+        opacity: 1;
+    }
+    20% {
+        left: 0;
+        z-index: 2;
+        opacity: 1;
+    }
+    25% {
+        left: -50%;
+        z-index: 2;
+        opacity: 0;
+    }
+    100% {
+        left: -100%;
+        z-index: 2;
+        opacity: 0;
+    }
+}
+
+.searchBox {
+    position: absolute;
+    top: 20%;
+    left: 10%;
+    width: 30vw;
+    height: 50vh;
+    z-index: 5;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 1em;
+    box-shadow: 1.2em 1.2em 5em .5em rgba(41, 41, 41, 0.3);
+    transition: left 0.33s linear;
+}
+
+.searchBox label {
+    line-height: 1.8em;
+}
+
+.searchBox .searchBoxContent {
+    position: absolute;
+    width: 90%;
+    height: 75%;
+    top: 5%;
+    left: 5%;
+    overflow-y: auto;
+}
+
+#bookingStart, #bookingEnd, #priceFrom, #priceTo {
+    width: 8vw;
+}
+
+.searchBox .searchBoxButton {
+    position: absolute;
+    margin: auto;
+    left: 50%;
+    bottom: 5%;
+    width: 90%;
+    transform: translateX(-50%);
+}
+
+.searchBox .searchBoxButton .confirm {
+    position: absolute;
+    bottom: 2%;
+    width: 100%;
+    cursor: pointer;
+}
+
+.searchList {
+    position: absolute;
+    bottom: 10%;
+    right: 2%;
+    width: 60vw;
+    height: 80vh;
+    z-index: 6;
+    background: rgba(255, 255, 255, .95);
+    border-radius: 1em;
+    box-shadow: 1.2em 1.2em 5em .5em rgba(41, 41, 41, 0.3);
+    overflow-y: auto;
+    overflow-x: hidden;
+    display: none;
+}
+
+.searchList .close {
+    position: absolute;
+    top: 5px;
+    right: 10px;
+}
+
+.searchList table {
+    margin: 2em 2em 0 2em;
+    text-align: center;
+    border: 1px solid darkgrey;
+    width: calc(100% - 4em);
+}
+
+.searchList table tr {
+    height: 4em;
+    border-bottom: 1px solid grey;
+}
+
+.searchList table tr:first-child {
+    height: 2em;
+}
+
+.searchList table td {
+    max-width: 4em;
+}
+
+.searchList table td:last-child {
+    width: 6em;
+}
+
+.searchList table td .book-btn {
+    display: inline-block;
+    margin: 0;
+    text-align: center;
+    cursor: pointer;
+    width: 4em;
+}
+
+.searchList table .confirm {
+    cursor: pointer;
+}
+
+.searchList .commentList {
+    position: absolute;
+    top: 15%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 50%;
+    height: 70%;
+    background-color: white;
+    border-radius: 1em;
+    box-shadow: 1.2em 1.2em 5em .5em rgba(41, 41, 41, 0.3);
+    display: none;
+}
+
+.searchList .commentList .content {
+    width: 100%;
+    height: 100%;
+    overflow: hidden auto;
+}
+
+.searchList .commentList .noCom {
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 2em;
+    text-align: center;
+}
+
+.searchList .commentList dl {
+    margin: 2em 1em 0 1em;
+    width: calc(100% - 2em);
+    box-shadow: 0 0 5px 1px rgba(0, 0, 0, .75);
+    padding: 1em .5em .5em .5em;
+}
+
+.searchList .commentList .date {
+    text-align: right;
+}
+
+.searchList .selectID {
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    line-height: 3em;
+    padding: 2em;
+    border-radius: 1em;
+    box-shadow: 0 0 5px 1px #000000;
+    background-color: rgba(255, 255, 255, .9);
+    display: none;
+}
+
+.searchList .selectID dt {
+    margin-bottom: 2em;
+}
+
+.searchList .selectID dd {
+    display: inline-block;
+}
+
+.searchList .selectID dd span {
+    display: inline-block;
+    width: 50%;
+}
+
+.searchList .selectID .IDs {
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    height: 40%;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.searchList .selectID dd button {
+    position: absolute;
+    bottom: 5%;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.footer {
+    display: block;
+    height: 7vh;
+    box-shadow: #0f0f0f;
+    background-color: var(--global-theme);
+}
+
+.footer p {
+    padding-top: 2.5vh;
+    width: 100%;
+    text-align: center;
+}
+
+.untouchable {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}

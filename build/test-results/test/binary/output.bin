@@ -1,0 +1,133 @@
+HTTP/1.1 401 
+Server: nginx/1.10.3 (Ubuntu)
+$Date: Mon, 01 Jan 2018 11:34:44 GMT
+-Content-Type: application/json;charset=UTF-8
+Transfer-Encoding: chunked
+Connection: keep-alive
+
+{
+1    "timestamp": "2018-01-01T11:34:44.337+0000",
+    "status": 401,
+    "error": "Unauthorized",
+^    "message": "访问/api/users/ com.enihsyou.astolfo.hotel.exception.没权限: 没权限",
+    "path": "/api/users/"
+}
+HTTP/1.1 405 
+Server: nginx/1.10.3 (Ubuntu)
+$Date: Mon, 01 Jan 2018 11:34:45 GMT
+Content-Length: 0
+Connection: keep-alive
+*X-Application-Context: Hotel Astolfo:8899
+Allow: POST
+HTTP/1.1 401 
+Server: nginx/1.10.3 (Ubuntu)
+$Date: Mon, 01 Jan 2018 11:34:46 GMT
+-Content-Type: application/json;charset=UTF-8
+Transfer-Encoding: chunked
+Connection: keep-alive
+
+{
+1    "timestamp": "2018-01-01T11:34:45.958+0000",
+    "status": 401,
+    "error": "Unauthorized",
+]    "message": "访问/api/users com.enihsyou.astolfo.hotel.exception.没权限: 没权限",
+    "path": "/api/users"
+}
+HTTP/1.1 401 
+Server: nginx/1.10.3 (Ubuntu)
+$Date: Mon, 01 Jan 2018 11:34:46 GMT
+-Content-Type: application/json;charset=UTF-8
+Transfer-Encoding: chunked
+Connection: keep-alive
+
+{
+1    "timestamp": "2018-01-01T11:34:46.527+0000",
+    "status": 401,
+    "error": "Unauthorized",
+j    "message": "访问/api/users/transactions com.enihsyou.astolfo.hotel.exception.没权限: 没权限",
+&    "path": "/api/users/transactions"
+}
+HTTP/1.1 401 
+Server: nginx/1.10.3 (Ubuntu)
+$Date: Mon, 01 Jan 2018 11:34:47 GMT
+-Content-Type: application/json;charset=UTF-8
+Transfer-Encoding: chunked
+Connection: keep-alive
+
+{
+1    "timestamp": "2018-01-01T11:34:47.067+0000",
+    "status": 401,
+    "error": "Unauthorized",
+a    "message": "访问/api/users/get com.enihsyou.astolfo.hotel.exception.没权限: 没权限",
+    "path": "/api/users/get"
+}
+HTTP/1.1 401 
+Server: nginx/1.10.3 (Ubuntu)
+$Date: Mon, 01 Jan 2018 11:34:47 GMT
+-Content-Type: application/json;charset=UTF-8
+Transfer-Encoding: chunked
+Connection: keep-alive
+
+{
+1    "timestamp": "2018-01-01T11:34:47.645+0000",
+    "status": 401,
+    "error": "Unauthorized",
+d    "message": "访问/api/users/guests com.enihsyou.astolfo.hotel.exception.没权限: 没权限",
+     "path": "/api/users/guests"
+}
+HTTP/1.1 409 
+Server: nginx/1.10.3 (Ubuntu)
+$Date: Mon, 01 Jan 2018 11:34:48 GMT
+-Content-Type: application/json;charset=UTF-8
+Transfer-Encoding: chunked
+Connection: keep-alive
+*X-Application-Context: Hotel Astolfo:8899
+
+{
+    "status": "CONFLICT",
+(    "timestamp": "2018-01-01 19:34:48",
+%    "message": "该用户已注册",
+H    "debugMessage": "手机号<18019002373>，注册时用户已存在"
+}
+	HTTP/1.1 409 
+	Server: nginx/1.10.3 (Ubuntu)
+	$Date: Mon, 01 Jan 2018 11:34:50 GMT
+	-Content-Type: application/json;charset=UTF-8
+	Transfer-Encoding: chunked
+	Connection: keep-alive
+	*X-Application-Context: Hotel Astolfo:8899
+	
+	{
+	    "status": "CONFLICT",
+	(    "timestamp": "2018-01-01 19:34:50",
+	%    "message": "该用户已注册",
+	H    "debugMessage": "手机号<18800000011>，注册时用户已存在"
+	}
+
+HTTP/1.1 400 
+
+Server: nginx/1.10.3 (Ubuntu)
+
+$Date: Mon, 01 Jan 2018 11:34:51 GMT
+
+-Content-Type: application/json;charset=UTF-8
+
+Transfer-Encoding: chunked
+
+Connection: keep-alive
+
+*X-Application-Context: Hotel Astolfo:8899
+
+
+
+{
+
+    "status": "BAD_REQUEST",
+
+(    "timestamp": "2018-01-01 19:34:51",
+
+.    "message": "用户名和密码不匹配",
+
+2    "debugMessage": "用户名和密码不匹配"
+
+}

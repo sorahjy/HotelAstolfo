@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>我的阿福</title>
+    <!--<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">-->
+    <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/management.css">
+</head>
+<body>
+<div class="top_banner">
+
+</div>
+<div class="main">
+    <div class="left-nav untouchable">
+        <dl class="" v-cloak>
+            <dt>{{userType}}</dt>
+            <dd class="btn-default" v-for="item in items" @click="displayView">{{item}}</dd>
+        </dl>
+    </div>
+    <div class="container untouchable">
+        <div class="welcome">
+
+        </div>
+    </div>
+</div>
+<div class="cat-loading"></div>
+<div class="footer">
+    <p class="untouchable">Designed&created by
+        <span title="1517440121">黄春翔</span>/
+        <span title="1517030317">黄术</span>/
+        <span title="1512480226">黄君扬</span>
+    </p>
+</div>
+<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://cdn.bootcss.com/vue/2.5.13/vue.min.js"></script>
+<script src="https://cdn.bootcss.com/js-sha256/0.9.0/sha256.min.js"></script>
+<script src="https://cdn.bootcss.com/jquery.maskedinput/1.4.1/jquery.maskedinput.min.js"></script>
+<script src="js/tools.js"></script>
+<script src="js/components.js"></script>
+<script src="js/management.js"></script>
+</body>
+</html>

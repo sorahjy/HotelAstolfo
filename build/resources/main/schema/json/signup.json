@@ -1,0 +1,33 @@
+{
+  "definitions": {},
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "id": "https://enihsyou.com/schema/signup.json",
+  "type": "object",
+  "properties": {
+    "phone_number": {
+      "id": "/properties/phone_number",
+      "type": "string",
+      "title": "用户手机号",
+      "description": "使用手机号当做用户名",
+      "default": ""
+    },
+    "password": {
+      "id": "/properties/password",
+      "type": "string",
+      "title": "The Password Schema.",
+      "description": "登录密码，应该是SHA256加密过的",
+      "default": ""
+    },
+    "nickname": {
+      "id": "/properties/nickname",
+      "type": "string",
+      "title": "The Nickname Schema.",
+      "description": "An explanation about the purpose of this instance.",
+      "default": ""
+    }
+  },
+  "required": [
+    "phone_number",
+    "password"
+  ]
+}
